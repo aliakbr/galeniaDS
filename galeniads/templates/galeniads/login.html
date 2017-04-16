@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+  <html>
+    <head>
+      <link rel="shortcut icon" href="{% static 'galeniads/images/logo.png' %}" />
+      <title>GDS Login</title>
+      <!--Import Google Icon Font-->
+      <link type="text/css" href="{% static 'galeniads/css/MaterialIcons.css' %}" rel="stylesheet" />
+      <!--Import materialize.css-->
+      <link type="text/css" href="{% static 'galeniads/css/materialize.css' %}" rel="stylesheet" media="screen,projection"/>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="{% static 'galeniads/js/jquery-3.2.0.js' %}"></script>
+      <script type="text/javascript" src="{% static 'galeniads/js/materialize.js' %}"></script>
+      <!-- gambar -->
+      <div class="row">
+        <img class="responsive-img col s4 offset-s4" src="{% static 'galeniads/images/galenia.png' %}"/>
+      </div>
+      <!-- form -->
+      <form>
+        <!-- username -->
+        <div class="row">
+          <div class="input-field col s6 offset-s3">
+            <input id="username" type="text" class="validate" required>
+            <label for="username">Username</label>
+          </div>
+        </div>
+        <!-- password -->
+        <div class="row">
+          <div class="input-field col s6 offset-s3">
+            <input id="passwd" type="password" class="validate" required>
+            <label for="passwd">Password</label>
+          </div>
+        </div>
+        <!-- tombol -->
+        <div class="row">
+          <button class="waves-effect waves-light btn col s2 offset-s5" type="submit">Login</button>
+        </div>
+        <div class="row">
+          <a href="register.html" class="col s2 offset-s5" style="padding-left: 2.3cm"> Register </a>
+        </div>
+      </form>
+    </body>
+  </html>
