@@ -2,10 +2,10 @@
 
 Galenia Database system prototype <br />
 
-##Installation :
+# Installation :
 1. Run this command : <br />
 python manage.py migrate<br />
 
-##Run the app :
+# Run the app :
 1. Run this command : <br />
 python manage.py runserver <port>
