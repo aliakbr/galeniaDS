@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
   <html>
     <head>
@@ -22,8 +23,9 @@
       </script>
        <div class="row">
         <form class="col s12">
+        {% csrf_token %}
           <div class="row">
-            <img class="responsive-img col s4 m4 offset-s4" src="images/galenia.png"/>
+            <img class="responsive-img col s4 m4 offset-s4" src="{% static 'galeniads/images/galenia.png' %}"/>
           </div>
           <div class="row">
             <div class="input-field col s6 m6 offset-s3">
@@ -62,7 +64,7 @@
         </form>
         <div class="row">
           <div class="input-field col s3 m6 offset-s5">
-            <p>Already registered? Login <a href="login.php">here</a></p>
+            <p>Already registered? Login <a href="{%url 'galeniads:index'%}">here</a></p>
           </div>
         </div>
       </div>

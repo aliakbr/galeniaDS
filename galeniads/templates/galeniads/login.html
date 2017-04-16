@@ -19,8 +19,10 @@
       <div class="row">
         <img class="responsive-img col s4 offset-s4" src="{% static 'galeniads/images/galenia.png' %}"/>
       </div>
+      {% block content %}
       <!-- form -->
-      <form>
+      <form method="POST" action="{% url 'galeniads:index' %}">
+        {% csrf_token %}
         <!-- username -->
         <div class="row">
           <div class="input-field col s6 offset-s3">
@@ -40,8 +42,9 @@
           <button class="waves-effect waves-light btn col s2 offset-s5" type="submit">Login</button>
         </div>
         <div class="row">
-          <a href="register.html" class="col s2 offset-s5" style="padding-left: 2.3cm"> Register </a>
+          <a href="{% url 'galeniads:register'%}" class="col s2 offset-s5" style="padding-left: 2.3cm"> Register </a>
         </div>
       </form>
+      {% endblock %}
     </body>
   </html>

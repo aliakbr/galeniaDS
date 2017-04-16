@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
   <html>
     <!-- Header -->
@@ -41,6 +42,7 @@
            <img class="brand-logo col s2" src="images/galenia.png"/>
           <!-- search bar -->
           <form class="col s6 offset-s1">
+            {% csrf_token %}
             <div class="input-field">
               <input id="search" type="search" required>
               <label class="label-icon" for="search"><i class="material-icons left">search</i></label>
@@ -97,6 +99,7 @@
       <!-- Modal for add file -->
       <div id="modal_add_file" class="modal">
         <form action="#">
+        {% csrf_token %}
         <div class="modal-content">
           <h4>Add File</h4>
               <div class="input-field">
