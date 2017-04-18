@@ -83,15 +83,20 @@
             <div class="row">
               <a href="#" class="col s11 breadcrumb">My Drive</a>
               <div class="col s1">
-                <i class="small material-icons">info</i>
+                <button data-target="modal_edit_folder" class="waves-effect waves-light">
+                  <i class="small material-icons">info</i>
+                </button>
               </div>
             </div>
             <!-- Folder Content -->
             <div class="row">
+              <button data-target="modal_add_file" class="waves-effect waves-light btn red"><i class="material-icons left">note_add</i>Add File</button>
+            </div>
+            <div class="row">
               <ul class="collection with-header">
                 <li class="collection-header"><b>File</b></li>
                 {% for file in files %}
-                <a href="#" class="collection-item" id="file-item">{{ file.name }}</li>
+                <a href="{% url 'galeniads:download_file' user_id folder_id file.id %}" class="collection-item" id="file-item">{{ file.name }}</li>
                 {% endfor %}
               </ul>
             </div>
@@ -138,6 +143,61 @@
         </div>
        </form>
       </div>
+
+      <!-- Modal for add file -->
+      <div id="modal_add_file" class="modal">
+        <form action="{% url 'galeniads:add_file' user_id folder_id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="modal-content">
+          <h4>Add File</h4>
+              <div class="file-field input-field">
+                <div class="btn">
+                  <span>File</span>
+                  <input type="file" name="file">
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text">
+                </div>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="Submit" class="waves-effect waves-light btn col s2 offset-s5">Submit</button>
+        </div>
+       </form>
+      </div>
+
+      <!-- Modal for edit folder -->
+      <div id="modal_edit_folder" class="modal">
+        <form action="{% url 'galeniads:edit_folder' user_id folder_id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="modal-content">
+          <h4>Add File</h4>
+              <div class="input-field">
+                <label>Folder Name</label>
+                <input type="text" name="folder_name_editted" value="{{ current_folder.name }}"></input>
+              </div>
+              <div class="input-field">
+                <label>Owner</label>
+                <input type="text" name="folder_owner_editted" value="{{ current_user.name }}"></input>
+              </div>
+              <div class="file-field input-field">
+                <div class="btn">
+                  <span>File</span>
+                  <input type="file" name="file_editted">
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text" value="{{ current_folder.file_template.name }}">
+                </div>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="Submit" class="waves-effect waves-light btn col s2 offset-s5">Edit</button>
+        </div>
+       </form>
+      </div>
+
+
+
     </body>
   </html>
 {% endblock %}

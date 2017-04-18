@@ -3,7 +3,7 @@
   <html>
     <head>
       <link rel="shortcut icon" href="{% static 'galeniads/images/logo.png' %}" />
-      <title>GDS Login</title>
+      <title>GDS Register</title>
       <!--Import Google Icon Font-->
       <link type="text/css" href="{% static 'galeniads/css/MaterialIcons.css' %}" rel="stylesheet" />
       <!--Import materialize.css-->
@@ -22,20 +22,20 @@
        $('select').material_select('destroy');
       </script>
        <div class="row">
-        <form class="col s12">
+        <form class="col s12" method="POST" action="{% url 'galeniads:register' %}">
         {% csrf_token %}
           <div class="row">
             <img class="responsive-img col s4 m4 offset-s4" src="{% static 'galeniads/images/galenia.png' %}"/>
           </div>
           <div class="row">
             <div class="input-field col s6 m6 offset-s3">
-              <input placeholder="First Name" id="first_name" type="text" class="validate">
+              <input placeholder="First Name" id="first_name" type="text" name="first_name" class="validate">
               <label for="first_name">First Name</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s6 m6 offset-s3">
-              <input placeholder="Last Name" id="last_name" type="text" class="validate">
+              <input placeholder="Last Name" id="last_name" type="text" name="last_name" class="validate">
               <label for="last_name">Last Name</label>
             </div>
           </div>
@@ -54,7 +54,13 @@
           </div>
           <div class="row">
             <div class="input-field col s6 m6 offset-s3">
-              <input id="password" type="password" class="validate">
+              <input id="username" type="text" name="username" class="validate">
+              <label for="username">Username</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6 m6 offset-s3">
+              <input id="password" type="password" name="password" class="validate">
               <label for="password">Password</label>
             </div>
           </div>

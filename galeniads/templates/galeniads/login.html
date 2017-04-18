@@ -21,20 +21,20 @@
       </div>
       {% block content %}
       <!-- form -->
-      <form method="POST" action="{% url 'galeniads:index' %}">
+      <form method="POST" action="{% url 'galeniads:login' %}">
         {% csrf_token %}
         <!-- username -->
         <div class="row">
           <div class="input-field col s6 offset-s3">
-            <input id="username" type="text" class="validate" required>
+            <input id="username" type="text" class="validate" name="username" required>
             <label for="username">Username</label>
           </div>
         </div>
         <!-- password -->
         <div class="row">
           <div class="input-field col s6 offset-s3">
-            <input id="passwd" type="password" class="validate" required>
-            <label for="passwd">Password</label>
+            <input id="password" type="password" class="validate" name="password" required>
+            <label for="password">Password</label>
           </div>
         </div>
         <!-- tombol -->

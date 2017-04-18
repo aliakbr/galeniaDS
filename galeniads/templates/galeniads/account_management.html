@@ -1,11 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-{% block content %}
   <html>
     <!-- Header -->
     <head>
       <link rel="shortcut icon" href="{% static 'galeniads/images/logo.png' %}" />
-      <title>GDS</title>
+      <title>GDS Login</title>
       <!--Import Google Icon Font-->
       <link type="text/css" href="{% static 'galeniads/css/MaterialIcons.css' %}" rel="stylesheet" />
       <!--Import materialize.css-->
@@ -33,11 +32,6 @@
         $('select').material_select();
       });
        $('select').material_select('destroy');
-
-       $('.collection-item #folder-item').on('click', 'a', function() {
-            $('.collection-item #folder-item a.active').removeClass('active');
-            $(this).addClass('active');
-        });
       </script>
 
       <!--Content-->
@@ -68,13 +62,13 @@
           <!-- tombol tambah file -->
           <div class="col s3">
             <div class="row">
-              <button data-target="modal_add_folder" class="waves-effect waves-light btn green"><i class="material-icons left">note_add</i>Add Folder</button>
+              <button data-target="modal_add_role" class="waves-effect waves-light btn green"><i class="material-icons left">contacts</i>Add Role</button>
             </div>
             <ul class="collection with-header">
-              <li class="collection-header"><b>Folder</b></li>
-              {% for folder in folders %}
-              <a href="{% url 'galeniads:view_file_in_folder' user_id folder.id %}"  class="collection-item" id="folder-item"> {{ folder.name }} </li>
-              {% endfor %}
+              <li class="collection-header"><b>Role</b></li>
+              <li class="collection-item"> Dummy Role </li>
+              <li class="collection-item"> Dummy Role </li>
+              <li class="collection-item"> Dummy Role </li>
             </ul>
           </div>
           <!-- direktori -->
@@ -89,10 +83,9 @@
             <!-- Folder Content -->
             <div class="row">
               <ul class="collection with-header">
-                <li class="collection-header"><b>File</b></li>
-                {% for file in files %}
-                <a href="#" class="collection-item" id="file-item">{{ file.name }}</li>
-                {% endfor %}
+                <li class="collection-header"><b>Account</b></li>
+                <li class="collection-item">Dummy User</li>
+                <li class="collection-item">Dummy User</li>
               </ul>
             </div>
           </div>
@@ -101,18 +94,16 @@
       <!-- bar sebelah kiri -->
 
       <!-- Modal -->
-
       <!-- Modal for add folder -->
-      <div id="modal_add_folder" class="modal">
-        <div class="modal-content" enctype="multipart/form-data">
+      <div id="modal_add_role" class="modal">
+        <div class="modal-content">
         <h4>Add Folder</h4>
-          <form action="{% url 'galeniads:add_folder' user_id %}" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
+          <form action="#">
               <div class="input-field">
                 <label>Folder Name</label>
-                <input type="text" name="folder_name"></input>
+                <input type="text"></input>
               </div>
-              <div class="input-field" name="role">
+              <div class="input-field">
                 <select>
                   <option value="" disabled selected>Choose your option</option>
                   <option value="1">Tata Usaha/Administrasi</option>
@@ -126,7 +117,7 @@
               <div class="file-field input-field">
                 <div class="btn">
                   <span>File</span>
-                  <input type="file" name="file" >
+                  <input type="file">
                 </div>
                 <div class="file-path-wrapper">
                   <input class="file-path validate" type="text">
@@ -140,4 +131,3 @@
       </div>
     </body>
   </html>
-{% endblock %}
