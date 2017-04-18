@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^home/(?P<id>[0-9]+)/(?P<pk>[0-9]+)/add/$', views.add_file, name="add_file"),
     url(r'^home/(?P<id>[0-9]+)/(?P<pk>[0-9]+)/edit/$', views.edit_folder, name="edit_folder"),
     url(r'^home/(?P<id>[0-9]+)/add/$', views.add_folder, name="add_folder"),
+    url(r'^home/(?P<id>[0-9]+)/(?P<pk>[0-9]+)/recap/$', views.recap_file, name="recap_file"),
     url(r'^home/(?P<id>[0-9]+)/(?P<pk>[0-9]+)/(?P<file_id>[0-9]+)/download/$', views.download_file, name="download_file"),
 ]

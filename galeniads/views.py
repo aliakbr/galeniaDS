@@ -7,6 +7,8 @@ from .models import *
 import os
 from django.conf import settings
 from django.http import HttpResponse
+import numpy as np
+import csv
 
 
 # Additional function
@@ -138,7 +140,6 @@ def add_file(request, id, pk):
 def download_file(request, id, pk, file_id):
     folder = get_object_or_404(Folder, pk=pk)
     file = get_object_or_404(File, pk=file_id)
-    print(file)
     file_src = str(file.src)
     file_path = os.path.join(file_src)
     if os.path.exists(file_path):
@@ -148,6 +149,42 @@ def download_file(request, id, pk, file_id):
             return response
     else:
         return redirect('galeniads:home', id=id)
+
+def download(request, path):
+    file_path = os.path.join(path)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    else:
+        return redirect('galeniads:index')
+
+def recap_file(request, id, pk):
+    folder = get_object_or_404(Folder, pk=pk)
+    file_dir = os.path.join('folder', "%s" % folder.name, 'file')
+    download_dir = os.path.join('recap.csv')
+    os.chdir(file_dir)
+    file_object  = open('recap.csv', 'w+')
+    files = File.objects.filter(folder=folder)
+    header_in = False
+    for file in files:
+        f = open(file.name)
+        if (header_in == False):
+            line = f.readline() + '\n'
+            file_object.write(line)
+            header_in == True
+        else:
+            a = f.readline()
+            while 1:
+                line = f.readline()
+                if not line:
+                    break
+                line = line + '\n'
+                file_object.write(line + '\n')
+    file_object.close()
+    return download(request, download_dir)
+
 def edit_folder(request, id, pk):
     folder = get_object_or_404(Folder, pk=pk)
     if request.method == 'POST':

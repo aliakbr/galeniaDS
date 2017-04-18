@@ -90,7 +90,13 @@
             </div>
             <!-- Folder Content -->
             <div class="row">
-              <button data-target="modal_add_file" class="waves-effect waves-light btn red"><i class="material-icons left">note_add</i>Add File</button>
+              <button data-target="modal_add_file" class="waves-effect waves-light btn red">
+                <i class="material-icons left">note_add</i>
+                Add File
+              </button>
+              <a href="{% url 'galeniads:recap_file' user_id folder_id %}" class="waves-effect waves-light btn blue">
+                Recap
+              </a>
             </div>
             <div class="row">
               <ul class="collection with-header">
