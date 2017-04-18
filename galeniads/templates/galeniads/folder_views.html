@@ -171,7 +171,7 @@
         <form action="{% url 'galeniads:edit_folder' user_id folder_id %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="modal-content">
-          <h4>Add File</h4>
+          <h4>Folder Description</h4>
               <div class="input-field">
                 <label>Folder Name</label>
                 <input type="text" name="folder_name_editted" value="{{ current_folder.name }}"></input>
